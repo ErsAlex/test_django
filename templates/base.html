@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django Cars</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container-fluid">
+    <h1><p class="center"></p>Марки Авто</p></h1>
+
+    {% block content %}
+    <form action="{% url 'update_catalog' %}" method="get">
+        <input type="submit" value="Обновить Базу">
+    </form>
+
+
+    {% for mark in marks_list%}
+    <ul class="list-group"></ul>
+    <li class="list-group-item"><a href="{% url 'detail' mark.pk %}">{{ mark.mark_name }}</a></li>
+
+    {% endfor %}
+    <br>
+    <div class="pagination">
+        <span class="step-links">
+            {% if marks_list.has_previous %}
+                <a href="?page=1">&laquo; первая</a>
+                <a href="?page={{ marks_list.previous_page_number }}">предыдущая</a>
+            {% endif %}
+
+            <span class="current">
+                Страница {{ marks_list.number }} из {{ marks_list.paginator.num_pages }}.
+            </span>
+
+            {% if marks_list.has_next %}
+                <a href="?page={{ marks_list.next_page_number }}">следующая</a>
+                <a href="?page={{ marks_list.paginator.num_pages }}">последняя &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+    {% endblock content %}
+</body>
+</div>
+</html>

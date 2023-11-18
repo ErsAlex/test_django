@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+<body>
+    
+
+    <h1>{{ mark.mark_name }}</h1>
+    <button type="button" class="btn btn-outline-secondary"><a href="{% url 'landing-page' %}">На главную</a></button>
+    <ul>
+    <br>
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Модель</th>
+            <th scope="col">Модификация</th>
+            <th scope="col">Кузов</th>
+            <th scope="col">Год</th>
+          </tr>
+        </thead>
+        {% for model in models%}
+            <tbody>
+              <tr>
+                <td>{{ model.model_name }}</td>
+                <td>{{ model.modification }}</td>
+                <td>{{ model.body_type }}</td>
+                <td>{{ model.years }}</td>
+              </tr>
+              <tr>
+        {% endfor %}
+    </ul>
+<br>
+<div class="pagination">
+    <span class="step-links">
+        {% if models.has_previous %}
+
+            <a href="?page=1">&laquo; первая</a>
+            <a href="?page={{ models.previous_page_number }}">предыдущая</a>
+
+        {% endif %}
+
+        <span class="current">
+            Страница {{models.number }} из {{ models.paginator.num_pages }}.
+        </span>
+
+        {% if models.has_next %}
+            <a href="?page={{ models.next_page_number }}">следующая</a>
+            <a href="?page={{ models.paginator.num_pages }}">последняя &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+</body>
+{% endblock content %}

@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "test-django"
+version = "0.1.0"
+description = ""
+authors = ["Alex Ershov <galak654@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+django = "^4.2.7"
+requests = "^2.31.0"
+django-bootstrap-v5 = "^1.0.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
