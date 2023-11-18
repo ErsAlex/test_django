@@ -1,12 +1,10 @@
-from typing import Any
-from django.db.models.query import QuerySet
+
 from django.shortcuts import redirect
 import requests
-from django.http import HttpResponse
-from django.views.generic import View, TemplateView, ListView, DetailView
+
+from django.views.generic import View, ListView, DetailView
 from django.core.paginator import Paginator
 import shutil
-from django.db import connection
 import xml.etree.ElementTree as ET
 from parser.models import Mark, Model
 from django.core.paginator import Paginator
