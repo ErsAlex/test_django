@@ -27,24 +27,19 @@ class DawnloadView(View):
                 shutil.copyfileobj(response.raw, file)
                 
         with open("cars.xml", 'r', encoding="utf-8") as file:
-            data = []
+            data = []    
             root = ET.parse(file)
             cars = root.findall('mark')
             for car in cars:
                 mark = car.attrib["name"]
                 mark_model = Mark.objects.create(mark_name=mark)
+                filter = set()
                 for spec in car.findall("folder"):
                     model_name = spec.attrib["name"].split(",")[0]
-                    for i in spec.findall("modification"):
-                        mod = i.attrib["name"]
-                        body = i.find("body_type").text
-                        years = i.find("years").text
-                        data.append(Model(
-                            model_name=model_name,
-                            modification=mod, body_type=body,
-                            years=years,
-                            mark=mark_model
-                            ))
+                    filter.add(model_name)
+                for model_n in filter:
+                    model = Model(mark=mark_model,model_name=model_n)
+                    data.append(model)
             Model.objects.bulk_create(data)
         
         return redirect(to="landing-page")

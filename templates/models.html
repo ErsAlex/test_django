@@ -12,18 +12,14 @@
         <thead>
           <tr>
             <th scope="col">Модель</th>
-            <th scope="col">Модификация</th>
-            <th scope="col">Кузов</th>
-            <th scope="col">Год</th>
+  
           </tr>
         </thead>
         {% for model in models%}
             <tbody>
               <tr>
                 <td>{{ model.model_name }}</td>
-                <td>{{ model.modification }}</td>
-                <td>{{ model.body_type }}</td>
-                <td>{{ model.years }}</td>
+   
               </tr>
               <tr>
         {% endfor %}

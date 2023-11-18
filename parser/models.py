@@ -10,11 +10,8 @@ class Mark(models.Model):
 
 class Model(models.Model):
     model_name = models.CharField(max_length=64)
-    modification = models.CharField(max_length=64, null=True)
-    body_type = models.CharField(max_length=64, null=True)
-    years = models.CharField(max_length=64, null=True)
     mark = models.ForeignKey(Mark, on_delete=models.CASCADE, related_name='all_models')
     
     
     def __str__(self):
-        return f'Модель :{self.model_name} Модификация: {self.modification} Кузов: {self.body_type} года :{self.years}'
+        return f'Модель :{self.model_name}' 
