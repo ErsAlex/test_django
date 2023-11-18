@@ -5,25 +5,12 @@
 
     <h1>{{ mark.mark_name }}</h1>
     <button type="button" class="btn btn-outline-secondary"><a href="{% url 'landing-page' %}">На главную</a></button>
-    <ul>
     <br>
+    {% for model in models%}
+    <ul class="list-group"></ul>
+    <li class="list-group-item">{{ model.model_name }}</a></li>
 
-    <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Модель</th>
-  
-          </tr>
-        </thead>
-        {% for model in models%}
-            <tbody>
-              <tr>
-                <td>{{ model.model_name }}</td>
-   
-              </tr>
-              <tr>
-        {% endfor %}
-    </ul>
+    {% endfor %}
 <br>
 <div class="pagination">
     <span class="step-links">
@@ -43,6 +30,6 @@
             <a href="?page={{ models.paginator.num_pages }}">последняя &raquo;</a>
         {% endif %}
     </span>
-</div>
-</body>
 {% endblock content %}
+</body>
+</div>
